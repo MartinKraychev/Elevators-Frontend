@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 17%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .windows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .window {
+    width: 60px;
+    height:60px;
+    background-color: black;
+    margin: 10px 0;
+  }
+  
+  
+  .buttonGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px 5px;
+  }
+  
+  .button {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+  .active {
+    background-color: #00ff00;
+    color: #fff;
+  }
+  
+  .button:hover {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 24px;
+  }

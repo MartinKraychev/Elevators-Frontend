@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .windows {
+    display: flex; /* Change from 'flex' to 'flex' for horizontal arrangement */
+    width: 40%;
+    justify-content: space-between; /* Space between windows */
+    margin-bottom: 20px;
+  }
+  
+  .window {
+    width: 50px;
+    height: 50px; /* Adjust window size as needed */
+    background-color: black;
+  }
