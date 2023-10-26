@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
+
 import styles from "./elevator-control.module.css"
+import { callElevator } from '../../services/services';
 
 export const ElevatorControls = () => {
     const [pressedButton, setPressedButton] = useState(null);
+    const [elevatorInfo, setElevatorInfo] = useState({});
 
     const handleButtonPress = (buttonNumber) => {
         setPressedButton(buttonNumber);
+        callElevator({"current_floor":buttonNumber})
+            .then(result => setElevatorInfo(result))
     };
+
+    const directionMapper = {
+        'up': "↑",
+        'down': "↓",
+        'idle': '-'
+    }
 
     return (
         <div className={styles.container}>
             <div className={styles.windows}>
-                <div className={styles.window}></div>
-                <div className={styles.window}></div>
+                <div className={styles.window}>{
+                    elevatorInfo.elevator_number && <p className={styles.textInWindow}>{directionMapper[elevatorInfo.elevator_direction]}</p>
+                }</div>
+                <div className={styles.window}>{
+                    elevatorInfo.elevator_direction && <p className={styles.textInWindow}>{elevatorInfo.elevator_number}</p>
+                }</div>
             </div>
             <div className={styles.buttonWrapper}>
                 <div className={styles.buttonGrid}>
