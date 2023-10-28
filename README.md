@@ -16,6 +16,8 @@ This README will guide you through the installation, configuration, and usage of
 
 This client app works with the following backend which also needs to be set up: https://github.com/MartinKraychev/Elevators-Backend
 
+This app was developed on Firefox and it is suggested that this browser is used. They might be small css differences for other browsers
+
 ## Configuration
 Before you can start using the Elevator Controls App:
 
@@ -70,5 +72,11 @@ It takes 10 seconds for the elevator to travel from one floor to another, regard
   Purpose: This route provides real-time information about the current position and direction of each elevator.
   
   Workflow: When you access this route, you will be able to see the current floor and direction of movement for each elevator, ensuring transparency and effective elevator management.
+
+## Browser Compatibility
+
+This app was developed and thoroughly tested on Mozilla Firefox. For the optimal experience, it is suggested that you use Firefox as your web browser.
+
+Please note that while the app is designed to work in other browsers, there might be minor CSS differences or rendering variations in those browsers.
 
 
