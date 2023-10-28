@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Elevator Controls App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+A React-based application for managing elevator operations. 
 
-In the project directory, you can run:
+The user starts by configurating the elevators and their floor ranges
 
-### `npm start`
+When a user presses the button, one of the available elevators will start moving towards that floor. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Many Users can use the control panel in sequence.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Many control panels can be in use at once.
 
-### `npm test`
+This README will guide you through the installation, configuration, and usage of this app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This client app works with the following backend which also needs to be set up: https://github.com/MartinKraychev/Elevators-Backend
 
-### `npm run build`
+## Configuration
+Before you can start using the Elevator Controls App:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/MartinKraychev/Elevators-Frontend.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependancies
 
-### `npm run eject`
+```bash
+npm i
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Start the app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Explanation
+The elevator queueing system operates as follows:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Whenever a user presses a button to call the elevator, the requested floor is added to a queue. The floors are inserted into the queue in their appropriate order based on the elevator's current direction.
 
-## Learn More
+Examples:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If the current queue is [1, 4, 6], and the user presses the button for floor 5, it will naturally be inserted between floors 4 and 6.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If the queue is [4, 5], and the user presses the button for floor 3, the elevator will prioritize going up to floor 5 first before descending to floor 3. Floor 3 will be added to the end of the queue.
 
-### Code Splitting
+The first floor in the queue is cleared and served every 10 seconds.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+It takes 10 seconds for the elevator to travel from one floor to another, regardless of whether it's going from floor 1 to floor 6 or from floor 5 to floor 6. This uniform travel time ensures efficient operation and proper queue management..
 
-### Analyzing the Bundle Size
+## Pages
+/config:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  Purpose: This route is used for configuring the elevators and defining their floor ranges.
+  
+  Workflow: After setting up the elevators and specifying their floor ranges, you can submit the configuration. Upon submission, you will be automatically redirected to the /controls route.
+  
+/controls:
 
-### Making a Progressive Web App
+  Purpose: This route allows users to call the nearest elevator to their current location.
+  
+  Workflow: When you press a number, the system will automatically call the elevator that is closest to your current location. This facilitates efficient and convenient elevator service.
+  
+/statuses:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  Purpose: This route provides real-time information about the current position and direction of each elevator.
+  
+  Workflow: When you access this route, you will be able to see the current floor and direction of movement for each elevator, ensuring transparency and effective elevator management.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
