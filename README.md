@@ -30,6 +30,10 @@ git clone https://github.com/MartinKraychev/Elevators-Frontend.git
 2. Install dependancies
 
 ```bash
+cd Elevators-Frontend
+```
+
+```bash
 npm i
 ```
 
