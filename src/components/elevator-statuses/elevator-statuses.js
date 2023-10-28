@@ -19,8 +19,8 @@ export const ElevatorStatuses = () => {
     
     return (
         <div className={styles.container}>
-            {elevatorsInfo.map(elevator => 
-            <div className={styles.windows}>
+            {elevatorsInfo.map((elevator, index) =>
+            <div className={styles.windows} key={index}>
                 <div className={styles.window}>{
                     <p className={styles.textInWindow}>{directionMapper[elevator[1]]}</p>
                 }</div>
