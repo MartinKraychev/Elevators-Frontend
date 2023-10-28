@@ -11,7 +11,6 @@ export const Config = () => {
 
     function onSubmit(event) {
         
-
         event.preventDefault();
         const formData = new FormData(event.target)
 
@@ -40,8 +39,8 @@ export const Config = () => {
                     <div className={styles.formRow} key={elevator}>
                         <label htmlFor={`elevator${elevator}`}>{`Elevator ${elevator}:`}</label>
                         <div>
-                            <input type="number" name={`minFloor${elevator}`} placeholder="Min Floor Limit" />
-                            <input type="number" name={`maxFloor${elevator}`} placeholder="Max Floor Limit" />
+                            <input type="number" min="1" max="9" name={`minFloor${elevator}`} placeholder="Min Floor Limit" />
+                            <input type="number" min="1" max="9" name={`maxFloor${elevator}`} placeholder="Max Floor Limit" />
                         </div>
                     </div>
                 ))}
