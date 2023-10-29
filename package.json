@@ -1,5 +1,5 @@
 {
-  "homepage" : "http://localhost:3000/config",
+  "homepage": "http://localhost:3000/config",
   "name": "elevators",
   "version": "0.1.0",
   "private": true,

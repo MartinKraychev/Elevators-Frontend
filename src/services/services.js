@@ -1,31 +1,53 @@
-const BASE_URL = "http://localhost:8000/"
+const host = "http://localhost:8000/"
 
-export const setConfig = async(body) => {
 
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+async function request(url, options) {
+    try {
+        const response = await fetch(host + url, options)
+        // host + url = full address
+
+        if (response.ok !== true) {
+            const error = await response.json()
+            const message = error.detail
+            throw new Error(message)
+        }
+
+        if (response.status === 201) {
+            //201 is no content status
+            return response
+        } else {
+            return response.json()
+        }
+
+    } catch (error) {
+        alert(error)
+    }
+}
+
+function createOptions(method = 'get', data) {
+
+    const options = {
+        method,
+        headers: {}
     }
 
-    await fetch(BASE_URL + 'config', requestOptions)
-}
-
-export const callElevator = async(body) => {
-
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+    if (data !== undefined) {
+        options.headers['Content-Type'] = 'application/json'
+        options.body = JSON.stringify(data)
     }
 
-    const response = await fetch(BASE_URL + 'elevators', requestOptions)
-    const result = await response.json()
-    return result
+    return options
 }
 
-export const getElevatorStatuses = async() => {
-    const response = await fetch(BASE_URL + 'elevators')
-    const result = await response.json()
-    return result
+export async function setConfig(body) {
+    return request('config', createOptions('post', body))
 }
+
+export async function callElevator(body) {
+    return request('elevators', createOptions('post', body))
+}
+
+export async function getElevatorStatuses() {
+    return request('elevators', createOptions())
+}
+
